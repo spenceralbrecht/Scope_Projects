@@ -16,7 +16,7 @@ export default class App extends React.Component {
   }
   textChange = (value) => {
     // value is a string so we convert value to a float (number with decimals)
-    value = parseFloat(value || 0);
+    value = parseFloat(value || 0).toFixed(2);
 
     // Store this new value in our application's state
     this.setState({
@@ -25,13 +25,13 @@ export default class App extends React.Component {
   }
   calculateTip = (proportion) => {
     const billAmount = this.state.billAmount;
-    const tip = proportion * billAmount;
-
+    const tip = (proportion * billAmount).toFixed(2);
+    const total = (parseFloat(billAmount) + parseFloat(tip)).toFixed(2)
     // Now that we've calculated the tip and total value, we store it in our
     // app state
     this.setState({
       tip: tip,
-      totalValue: billAmount + tip
+      totalValue: total,
     })
 
     // Used to hide the phone keyboard
@@ -52,7 +52,24 @@ export default class App extends React.Component {
         />
         <View style={styles.tipButtonContainer}>
           <Button
+            title="1%"
+            color="#FF0000"
+            onPress={() => {
+              this.calculateTip(0.01);
+            }}
+          />
+
+          <Button
+            title="5%"
+            color="#FFC300"
+            onPress={() => {
+              this.calculateTip(0.05);
+            }}
+          />
+
+          <Button
             title="10%"
+            color="#58D68D"
             onPress={() => {
               this.calculateTip(0.1);
             }}
@@ -62,20 +79,6 @@ export default class App extends React.Component {
             title="15%"
             onPress={() => {
               this.calculateTip(0.15);
-            }}
-          />
-
-          <Button
-            title="20%"
-            onPress={() => {
-              this.calculateTip(0.2);
-            }}
-          />
-
-          <Button
-            title="25%"
-            onPress={() => {
-              this.calculateTip(0.25);
             }}
           />
         </View>
