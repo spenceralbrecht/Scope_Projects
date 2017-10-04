@@ -9,7 +9,8 @@ import {
 
 export default class Card extends React.Component {
   state = {
-    showTerm: true
+    showTerm: true,
+    starred: false
   }
 
   /*
@@ -21,15 +22,25 @@ export default class Card extends React.Component {
     });
   }
 
+  toggleStar = () => {
+    this.setState({
+      starred: !this.state.starred
+    });
+  }
+
   render() {
     // Conditional statement that changes the style of the text based on whether or not we're seeing the term or definition
     const textStyle = (this.state.showTerm) ? (styles.termText) : (styles.definitionText);
+    const circleStyle = (this.state.starred) ? (styles.priority_circle) : (styles.circle);
     return (
       <TouchableWithoutFeedback onPress={this.flipCard}>
         <View style={[styles.container]}>
           <Text style={styles.cardSubject}>{this.props.cardData.subject}</Text>
           <Text style={styles.cardTitle}>{(this.state.showTerm) ? ("Term") : ("Definition")}</Text>
           <Text style={textStyle}>{(this.state.showTerm) ? (this.props.cardData.term) : (this.props.cardData.definition)}</Text>
+          <TouchableWithoutFeedback onPress={this.toggleStar}>
+             <View style={circleStyle} />
+          </TouchableWithoutFeedback>
         </View>
       </TouchableWithoutFeedback>
     );
@@ -48,7 +59,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 5,
     padding: 20,
-    height: 300
+    height: 300,
+    borderRadius: 10,
   },
   cardTitle: {
     color: '#7f8c8d',
@@ -73,5 +85,24 @@ const styles = StyleSheet.create({
   definitionText: {
     fontSize: 30,
     //fontFamily: 'Georgia'
-  }
+  },
+  circle: {
+      width: 25,
+      height: 25,
+      position: 'absolute',
+      borderRadius: 25/2,
+      left: 10,
+      bottom: 10,
+      borderWidth: 1,
+      borderColor: '#666666',
+  },
+  priority_circle: {
+      width: 25,
+      height: 25,
+      position: 'absolute',
+      borderRadius: 25/2,
+      left: 10,
+      bottom: 10,
+      backgroundColor: '#ff8000',
+  },
 });
