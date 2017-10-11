@@ -12,7 +12,7 @@ export default class BookScreen extends Component {
     Set the StackNavigator options so our screen's title says Book
   */
   static navigationOptions = {
-    title: 'Book',
+    title: 'More Info',
   };
 
   render() {
@@ -25,7 +25,7 @@ export default class BookScreen extends Component {
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <Text style={styles.title}>{params.book.title}</Text>
-
+          <Text style={styles.description}>Page Count: {params.book.pageCount}</Text>
           <Image
             style={styles.thumbnail}
             resizeMode='contain'
@@ -48,10 +48,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   title: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
     fontWeight: '700',
-    marginTop: 20
+    marginTop: 20,
+    fontFamily: 'sans-serif',
   },
   thumbnail: {
     width: 200,
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 15,
     lineHeight: 20,
-    padding: 15
+    padding: 15,
+    fontFamily: 'sans-serif-light',
   }
 });

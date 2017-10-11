@@ -36,9 +36,9 @@ export default class SearchScreen extends Component {
     searchTerm - The title users are searching for
   */
   state = {
-      books: [],
-      searchTerm: ''
-    }
+    books: [],
+    searchTerm: ''
+  }
 
   keyExtractor = (item, index) => item.id;
 
@@ -73,17 +73,19 @@ export default class SearchScreen extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.searchView}>
+            {/* Text input object for the search bar */}
             <TextInput
               onChangeText={(text) => {
                 this.setState({
                   searchTerm: text
                 });
               }}
+              placeholder='Enter book title'
               value={this.state.searchTerm}
               style={styles.searchTextInput}
             />
-
-          <Button title="Search" onPress={this.searchBooks}  style={styles.searchBtn} />
+          {/* Search button */}
+          <Button title="Search" onPress={this.searchBooks} color='#666666' style={styles.searchBtn} />
         </View>
 
         <FlatList
@@ -117,14 +119,13 @@ const styles = StyleSheet.create({
   searchView: {
     width: '100%',
     padding: 20,
-    paddingTop: 40,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#3498DB',
-    marginTop: 24
+    backgroundColor: '#2C3E50'
   },
   searchTextInput: {
     padding: 10,
+    height: 40,
     borderRadius: 2,
     borderColor: '#FFFFFF',
     backgroundColor: '#FFFFFF',
@@ -133,6 +134,8 @@ const styles = StyleSheet.create({
   },
   searchBtn: {
     flexBasis: '25%',
-    color: '#000000',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 50,
   }
 });
