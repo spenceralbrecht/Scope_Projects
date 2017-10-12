@@ -26,13 +26,6 @@ export default class BookItem extends Component {
       }
     }
 
-    // if (book.averageRating == undefined) {
-    //   rating = styles.;
-    // }
-    // else {
-    //   rating = styles.;
-    // }
-
 
     return (
       // If we click on a BookItem in our FlatList, bring up the BookScreen which

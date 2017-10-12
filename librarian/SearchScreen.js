@@ -83,17 +83,18 @@ export default class SearchScreen extends Component {
               placeholder='Enter book title'
               value={this.state.searchTerm}
               style={styles.searchTextInput}
+              onSubmitEditing={this.searchBooks}
             />
           {/* Search button */}
           <Button title="Search" onPress={this.searchBooks} color='#666666' style={styles.searchBtn} />
         </View>
 
-        <FlatList
-          data={this.state.books}
-          keyExtractor={this.keyExtractor}
-          renderItem={this.renderBook}
-          style={styles.bookList}
-        />
+          <FlatList
+            data={this.state.books}
+            keyExtractor={this.keyExtractor}
+            renderItem={this.renderBook}
+            style={styles.bookList}
+          />
       </View>
     );
   }

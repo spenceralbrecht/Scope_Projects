@@ -15,7 +15,9 @@ export default class BookScreen extends Component {
     title: 'More Info',
   };
 
-  _onError = () => { this.setState({ failed: true }); }
+  state = {
+    image: 0,
+  }
 
   render() {
     /*
@@ -23,29 +25,19 @@ export default class BookScreen extends Component {
     */
     const { params } = this.props.navigation.state;
 
-    // if (this.state.failed) {
-    //
-    // }
+    {(params.book.imageLinks.thumbnail!==undefined) ? (this.state.image=1) : null}
 
     return (
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <Text style={styles.title}>{params.book.title}</Text>
           <Text style={styles.description}>Page Count: {params.book.pageCount}</Text>
-          {this.props.image && <Image
+          {this.state.image && <Image
             style={styles.thumbnail}
             resizeMode='contain'
             source={{uri: params.book.imageLinks.thumbnail}}
-            onError={this._onError}
+            defaultSource={{uri: 'https://maxcdn.icons8.com/Share/icon/ios7/Files//open_book1600.png'}}
           />}
-          {/*
-          <Image
-            style={styles.thumbnail}
-            resizeMode='contain'
-            source={{uri: params.book.imageLinks.thumbnail}}
-            onError={this._onError}
-          />*/}
-
           <Text style={styles.description}>{params.book.description}</Text>
         </ScrollView>
       </View>

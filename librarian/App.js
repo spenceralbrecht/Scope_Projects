@@ -14,7 +14,7 @@ import BookScreen from './BookScreen';
 const App = StackNavigator({
   // Appears to follow order {name}: { {type}: {component} }
   Search: { screen: SearchScreen },
-  Details: { screen: BookScreen }
+  Details: { screen: BookScreen },
 });
 
 export default App;
